@@ -34,7 +34,7 @@ There are some important concepts and architectural choices that is important to
 
 ---
 
-**Spec Extensions** would be any outside library or supporting file to be used by the specs.
+**Spec Support** would be any outside library or supporting file to be used by the specs.
 
 The use of **factories** are very common to mock input to the functions being tested. Allowing for these objects to be reused by several specs.
 
