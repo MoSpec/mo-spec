@@ -1,7 +1,7 @@
-import U "../src/example/Utils";
+import U "Utils";
 import Debug "mo:base/Debug";
 
-import ActorSpec "../../src/utils/ActorSpec";
+import ActorSpec "../../../src/ActorSpec";
 type Group = ActorSpec.Group;
 
 let assertTrue = ActorSpec.assertTrue;
