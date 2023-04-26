@@ -3,3 +3,4 @@
 
 npm run prettier:format
 npm run prettier:check
+npm test

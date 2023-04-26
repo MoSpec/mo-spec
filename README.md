@@ -2,6 +2,10 @@
 
 Motoko specs that are easy to read and learn, allowing you to ship Motoko code with confidence.
 
+## Notice
+
+This is a heavily WIP package
+
 ## Credits
 
 - Underneath the hood, it's using [Motoko Matchers](https://kritzcreek.github.io/motoko-matchers) of [Christoph Hegemann](https://github.com/kritzcreek)
@@ -12,7 +16,7 @@ Motoko specs that are easy to read and learn, allowing you to ship Motoko code w
 
 ## Demo
 
-In this repo, you will find an example of it's usage on the "example" folder.
+In this repo, you will find an example of it's usage on the "example" folder. (WIP)
 
 ## Architecture
 
@@ -21,7 +25,7 @@ There are some important concepts and architectural choices that is important to
 **MoSpec** is composed of:
 
 - Spec Core
-- Spec Extensions
+- Spec Support
 - Specs
 
 ---
@@ -29,14 +33,11 @@ There are some important concepts and architectural choices that is important to
 **Spec Core** would typically be composed of:
 
 - Spec Config
-- Spec Collector
-- Spec Runner
+- Spec Runner (delegated to mo-test)
 
 **Config** is where you can set the configs that affect ALL specs. Good examples would be: environment vars, some bootstrap config, strategies for cleaning up data, enable/disable extensions and it's configs, etc.
 
-**Collector** this is where you set the paths to all the files you want to import and to run the "spec" against. Its only function is to collect files/modules and deliver it as an array to Spec Runner.
-
-**Runner** is the executable that is being called and that actually runs all the specs. It starts by "bootstraping" with the config file, then asks the spec collector for an array of specs and runs each of them. It also collects data of how many were success, failed or skipped and presents a summary at the end. This file will be buried in the Lib and is not meant to be modified by the user.
+**Runner** is the executable that is being called and that actually runs all the specs. It is using the package mo-dev/mo-test underneath the hood. The package collects all files ending in *.test.mo, it executes them with wasmtime testmode and then runs each test. It collects data of how many were success, failed or skipped and presents a summary at the end.
 
 ---
 
@@ -58,7 +59,8 @@ Last but not least, **specs** are the files/modules where you will write the spe
 - Execute
 - Assert
 
-You should have one "spec file" per "src file" being tested, with similar structure as your src folder (eg.: src/Utils/Foo.mo -> spec/Utils/FooSpec.mo).
+You should have one "spec file" per "src file" being tested, finishing with a .test.mo. Although it can be in a separate "spec" folder as in traditional testing libraries, the
+recommended structure for MoSpec is on the same folder as src, following the trend on Jest. It allows for easier import, easier "access" and tracking of which files are being tested and which are not, etc.
 
 You should use descriptive strings, with the "describe", "context" and "it" blocks. Also variables should be descriptive. So that any future developer can easily skim through the english part, and only stop at the edge case that is relevant.
 
