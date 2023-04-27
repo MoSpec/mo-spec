@@ -37,7 +37,7 @@ There are some important concepts and architectural choices that is important to
 
 **Config** is where you can set the configs that affect ALL specs. Good examples would be: environment vars, some bootstrap config, strategies for cleaning up data, enable/disable extensions and it's configs, etc.
 
-**Runner** is the executable that is being called and that actually runs all the specs. It is using the package mo-dev/mo-test underneath the hood. The package collects all files ending in *.test.mo, it executes them with wasmtime testmode and then runs each test. It collects data of how many were success, failed or skipped and presents a summary at the end.
+**Runner** is the executable that is being called and that actually runs all the specs. It is using the package mo-dev/mo-test underneath the hood. The package collects all files ending in \*.test.mo, it executes them with wasmtime testmode and then runs each test. It collects data of how many were success, failed or skipped and presents a summary at the end.
 
 ---
 
