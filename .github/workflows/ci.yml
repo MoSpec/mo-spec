@@ -20,13 +20,16 @@ jobs:
       with:
         node-version: 18
     - run: npm clean-install
+    - name: "check prettier"
+      run: npm run prettier:check
+    - name: "audit"
+      run: npm audit
     - uses: cachix/install-nix-action@v20
       with:
         nix_path: nixpkgs=channel:nixos-22.11
     - name: "install dependencies"
       run: |
         nix-env --install wasmtime --file '<nixpkgs>'
-        nix-env --install graphviz --file '<nixpkgs>'
     - name: "install Motoko binaries"
       run: |
        wget https://github.com/dfinity/motoko/releases/download/${{ env.moc_version }}/motoko-linux64-${{ env.moc_version }}.tar.gz
@@ -38,7 +41,5 @@ jobs:
        wget --output-document /home/runner/bin/vessel https://github.com/kritzcreek/vessel/releases/download/${{ env.vessel_version }}/vessel-linux64
        chmod +x /home/runner/bin/vessel
        vessel install
-    - name: "audit"
-      run: npm audit
     - name: "test"
       run: npm test
