@@ -1,11 +1,11 @@
 import T "Types";
-import U "Utils";
+import M "Module";
 
 actor {
   public query func greet(args : T.GreetArgs) : async Text {
-    return U.greet(args);
+    return M.greet(args);
   };
   public query func sum(args : T.SumArgs) : async Nat {
-    return U.sum(args);
+    return M.sum(args);
   };
 };

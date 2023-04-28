@@ -1,17 +1,17 @@
-import U "Utils";
+import M "Module";
 import Debug "mo:base/Debug";
 
-import ActorSpec "ActorSpec";
-type Group = ActorSpec.Group;
+import MoSpec "MoSpec";
+type Group = MoSpec.Group;
 
-let assertTrue = ActorSpec.assertTrue;
-let describe = ActorSpec.describe;
-let context = ActorSpec.context;
-let before = ActorSpec.before;
-let it = ActorSpec.it;
-let skip = ActorSpec.skip;
-let pending = ActorSpec.pending;
-let run = ActorSpec.run;
+let assertTrue = MoSpec.assertTrue;
+let describe = MoSpec.describe;
+let context = MoSpec.context;
+let before = MoSpec.before;
+let it = MoSpec.it;
+let skip = MoSpec.skip;
+let pending = MoSpec.pending;
+let run = MoSpec.run;
 
 // setup
 var iterator = 0;
@@ -37,13 +37,13 @@ let success = run([
           it(
             "should sum two positive Nats",
             do {
-              assertTrue(U.sum((1, 2)) == 3);
+              assertTrue(M.sum((1, 2)) == 3);
             },
           ),
           it(
             "should fail a check that doesn't match",
             do {
-              assertTrue(U.sum((1, 2)) != 4);
+              assertTrue(M.sum((1, 2)) != 4);
             },
           ),
           it(

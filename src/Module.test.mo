@@ -1,22 +1,32 @@
-import U "Utils";
+import M "Module";
 import Debug "mo:base/Debug";
 
-import MoSpec "../../../src/MoSpec";
+import MoSpec "MoSpec";
 type Group = MoSpec.Group;
 
 let assertTrue = MoSpec.assertTrue;
 let describe = MoSpec.describe;
+let context = MoSpec.context;
+let before = MoSpec.before;
 let it = MoSpec.it;
 let skip = MoSpec.skip;
 let pending = MoSpec.pending;
 let run = MoSpec.run;
 
+// setup
+var iterator = 0;
+
 let success = run([
   describe(
     "Example Test Suite",
     [
-      describe(
-        "Subgroup",
+      before(
+        do {
+          iterator += 1;
+        },
+      ),
+      context(
+        "When something happens",
         [
           it(
             "should assess a boolean value",
@@ -27,13 +37,19 @@ let success = run([
           it(
             "should sum two positive Nats",
             do {
-              assertTrue(U.sum((1, 2)) == 3);
+              assertTrue(M.sum((1, 2)) == 3);
             },
           ),
           it(
             "should fail a check that doesn't match",
             do {
-              assertTrue(U.sum((1, 2)) != 4);
+              assertTrue(M.sum((1, 2)) != 4);
+            },
+          ),
+          it(
+            "before do should have run 1 times",
+            do {
+              assertTrue(iterator == 1);
             },
           ),
           skip(
