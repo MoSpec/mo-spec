@@ -4,7 +4,6 @@ In this doc you will find a summary of the planned features.
 
 ## Current Features WIP
 
-- Write with "describe", "context" and "it".
 - Test canister code
 - Example with both Canister and Module specs
 - Improve mo-test error description / match
