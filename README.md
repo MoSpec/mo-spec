@@ -21,9 +21,10 @@ In this repo, you will find an example of it's usage on the "example" folder. (W
 ---
 
 ## Features
+
 - Fast and powerful spec loader and runner (credit to mo-spec)
 - "Describe", "context" and "it" syntax, with grouping and sub-grouping
-- 
+-
 
 [Next Features](/ROADMAP.md)
 
