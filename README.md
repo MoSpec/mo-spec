@@ -18,6 +18,18 @@ This is a heavily WIP package
 
 In this repo, you will find an example of it's usage on the "example" folder. (WIP)
 
+---
+
+## Features
+
+- Fast and powerful spec loader and runner (credit to mo-spec)
+- "Describe", "context" and "it" syntax, with grouping and sub-grouping
+-
+
+[Next Features](/ROADMAP.md)
+
+---
+
 ## Architecture
 
 There are some important concepts and architectural choices that is important to understand for any project to apply this library succesfuly.
