@@ -104,6 +104,23 @@ module {
     };
   };
 
+  public func context(name_ : Text, groups_ : [Group]) : Group {
+    describe(name_, groups_);
+  };
+
+  public func before() : Group {
+    {
+      name = "";
+      groups = [];
+      status = {
+        failed = 0;
+        passed = 1;
+        pending = 0;
+        skipped = 0;
+      };
+    };
+  };
+
   public func it(name_ : Text, passed_ : Bool) : Group {
     {
       name = name_;
