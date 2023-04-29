@@ -1,70 +1,37 @@
-import M "Module";
+// @testmode interpreter
+
 import Debug "mo:base/Debug";
+import C "mo:matchers/Canister";
+import M "mo:matchers/Matchers";
+import T "mo:matchers/Testable";
 
-import MoSpec "MoSpec";
-type Group = MoSpec.Group;
+import CanisterActor "Canister";
 
-let assertTrue = MoSpec.assertTrue;
-let describe = MoSpec.describe;
-let context = MoSpec.context;
-let before = MoSpec.before;
-let it = MoSpec.it;
-let skip = MoSpec.skip;
-let pending = MoSpec.pending;
-let run = MoSpec.run;
+let deployedCanister = await CanisterActor.Canister();
+let it = C.Tester({ batchSize = 8 });
 
-// setup
-var iterator = 0;
+func test() : async Text {
+  it.should(
+    "greet me",
+    func() : async C.TestResult = async {
+      let greeting = await deployedCanister.greet({ name = "Christoph" });
+      if (greeting != "Hello, Christoph!") Debug.trap("Tests failed");
 
-let success = run([
-  describe(
-    "Example Test Suite",
-    [
-      before(
-        do {
-          iterator += 1;
-        },
-      ),
-      context(
-        "When something happens",
-        [
-          it(
-            "should assess a boolean value",
-            do {
-              assertTrue(true);
-            },
-          ),
-          it(
-            "should sum two positive Nats",
-            do {
-              assertTrue(M.sum((1, 2)) == 3);
-            },
-          ),
-          it(
-            "should fail a check that doesn't match",
-            do {
-              assertTrue(M.sum((1, 2)) != 4);
-            },
-          ),
-          it(
-            "before do should have run 1 times",
-            do {
-              assertTrue(iterator == 1);
-            },
-          ),
-          skip(
-            "should skip a test",
-            do {
-              // Useful for defining a test that is not yet implemented
-              true;
-            },
-          ),
-        ],
-      ),
-    ],
-  ),
-]);
+      M.attempt(greeting, M.equals(T.text("Hello, Christopher!")));
+    },
+  );
 
-if (success == false) {
-  Debug.trap("Tests failed");
+  it.shouldFailTo(
+    "greet him-whose-name-shall-not-be-spoken",
+    func() : async () = async {
+      let greeting = await deployedCanister.greet({ name = "Voldemort" });
+      ignore greeting;
+    },
+  );
+
+  await it.runAll()
+  // await it.run()
 };
+//};
+
+await test();

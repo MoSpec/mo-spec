@@ -1,7 +1,7 @@
 import T "Types";
 import M "Module";
 
-actor {
+actor class Canister() {
   public query func greet(args : T.GreetArgs) : async Text {
     return M.greet(args);
   };
