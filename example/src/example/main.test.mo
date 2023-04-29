@@ -1,15 +1,15 @@
 import U "Utils";
 import Debug "mo:base/Debug";
 
-import ActorSpec "../../../src/ActorSpec";
-type Group = ActorSpec.Group;
+import MoSpec "../../../src/MoSpec";
+type Group = MoSpec.Group;
 
-let assertTrue = ActorSpec.assertTrue;
-let describe = ActorSpec.describe;
-let it = ActorSpec.it;
-let skip = ActorSpec.skip;
-let pending = ActorSpec.pending;
-let run = ActorSpec.run;
+let assertTrue = MoSpec.assertTrue;
+let describe = MoSpec.describe;
+let it = MoSpec.it;
+let skip = MoSpec.skip;
+let pending = MoSpec.pending;
+let run = MoSpec.run;
 
 let success = run([
   describe(
