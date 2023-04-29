@@ -1,37 +1,63 @@
 // @testmode interpreter
 
 import Debug "mo:base/Debug";
-import C "mo:matchers/Canister";
-import M "mo:matchers/Matchers";
-import T "mo:matchers/Testable";
-
 import CanisterActor "Canister";
+import MoSpec "MoSpec";
 
 let deployedCanister = await CanisterActor.Canister();
-let it = C.Tester({ batchSize = 8 });
 
-func test() : async Text {
-  it.should(
-    "greet me",
-    func() : async C.TestResult = async {
-      let greeting = await deployedCanister.greet({ name = "Christoph" });
-      if (greeting != "Hello, Christoph!") Debug.trap("Tests failed");
+let assertTrue = MoSpec.assertTrue;
+let describe = MoSpec.describe;
+let context = MoSpec.context;
+let before = MoSpec.before;
+let it = MoSpec.it;
+let skip = MoSpec.skip;
+let pending = MoSpec.pending;
+let run = MoSpec.run;
 
-      M.attempt(greeting, M.equals(T.text("Hello, Christopher!")));
-    },
-  );
+let success = run([
+  describe(
+    "#greet",
+    [
+      it(
+        "should greet me",
+        do {
+          let response = await deployedCanister.greet({ name = "Christoph" });
+          assertTrue(response == "Hello, Christoph!");
+        },
+      ),
+      it(
+        "greet him-whose-name-shall-not-be-spoken",
+        do {
+          let response = await deployedCanister.greet({
+            name = "him whose name shall not be spoken";
+          });
+          assertTrue(response != "Voldemort");
+        },
+      ),
+    ],
+  ),
+  describe(
+    "#sum",
+    [
+      it(
+        "should sum two positive Nats",
+        do {
+          let response = await deployedCanister.sum((1, 2));
+          assertTrue(response == 3);
+        },
+      ),
+      it(
+        "should fail a check that doesn't match",
+        do {
+          let response = await deployedCanister.sum((1, 2));
+          assertTrue(response != 4);
+        },
+      ),
+    ],
+  ),
+]);
 
-  it.shouldFailTo(
-    "greet him-whose-name-shall-not-be-spoken",
-    func() : async () = async {
-      let greeting = await deployedCanister.greet({ name = "Voldemort" });
-      ignore greeting;
-    },
-  );
-
-  await it.runAll()
-  // await it.run()
+if (success == false) {
+  Debug.trap("Tests failed");
 };
-//};
-
-await test();

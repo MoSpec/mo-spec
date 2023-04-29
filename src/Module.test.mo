@@ -1,8 +1,6 @@
 import M "Module";
 import Debug "mo:base/Debug";
-
 import MoSpec "MoSpec";
-type Group = MoSpec.Group;
 
 let assertTrue = MoSpec.assertTrue;
 let describe = MoSpec.describe;
