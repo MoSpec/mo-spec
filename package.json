@@ -11,7 +11,7 @@
     "prettier:check": "npx prettier --check .",
     "prettier:format": "npx prettier --write .",
     "test": "npm run test:src && npm run test:example",
-    "test:src": "mo-test -C src --testmode interpreter --verbose",
+    "test:src": "mo-test -C test --testmode interpreter --verbose",
     "test:example": "mo-test -C example --testmode interpreter --verbose"
   },
   "repository": {
