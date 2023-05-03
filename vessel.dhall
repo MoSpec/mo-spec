@@ -1,1 +1,1 @@
-{ dependencies = [ "base", "matchers" ], compiler = Some "0.8.8" }
+{ dependencies = [ "base", "matchers" ], compiler = Some "0.8.5" }
