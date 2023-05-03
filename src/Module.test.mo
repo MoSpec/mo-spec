@@ -21,7 +21,7 @@ let success = run([
       before(
         do {
           iterator += 1;
-        },
+        }
       ),
       context(
         "When something happens",

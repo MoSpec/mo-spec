@@ -23,6 +23,7 @@ In this repo, you will find an example of it's usage on the "example" folder. (W
 
 - Fast and powerful spec loader and runner (credit to mo-test)
 - "Describe", "context", "before", "it" syntax, with grouping and sub-grouping
+- Capable of running Canister / Actor specs, using the interpreter
 -
 
 [Next Features](/ROADMAP.md)

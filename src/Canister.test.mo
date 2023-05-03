@@ -1,5 +1,3 @@
-// @testmode interpreter
-
 import Debug "mo:base/Debug";
 import CanisterActor "Canister";
 import MoSpec "MoSpec";
