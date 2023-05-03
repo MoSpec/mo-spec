@@ -9,7 +9,7 @@ on:
 # Remember to update me!
 env:
   vessel_version: "v0.6.4"
-  moc_version: "0.8.5"
+  moc_version: "0.8.8"
 
 jobs:
   tests:
