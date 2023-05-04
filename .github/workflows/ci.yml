@@ -44,4 +44,7 @@ jobs:
       - name: "install dfx"
         run: sh -ci "$(curl -fsSL https://internetcomputer.org/install.sh)"
       - name: "run tests"
-        run: npm test
+        run: |
+          dfx start --background
+          npm test
+          dfx stop
