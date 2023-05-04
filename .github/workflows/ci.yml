@@ -42,4 +42,4 @@ jobs:
           chmod +x /home/runner/bin/vessel
           vessel install
       - name: "test"
-        run: npm test
+        run: dfx start --background && npm test && dfx stop

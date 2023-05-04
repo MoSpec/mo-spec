@@ -1,5 +1,4 @@
 {
-  "dfx": "0.13.1",
   "canisters": {
     "example": {
       "main": "src/example/main.mo",
