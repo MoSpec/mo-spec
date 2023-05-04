@@ -8,7 +8,7 @@ on:
 
 # Remember to update me!
 env:
-  vessel_version: "v0.6.4"
+  vessel_version: "v0.6.5"
   moc_version: "0.8.8"
 
 jobs:
@@ -41,5 +41,7 @@ jobs:
           wget --output-document /home/runner/bin/vessel https://github.com/kritzcreek/vessel/releases/download/${{ env.vessel_version }}/vessel-linux64
           chmod +x /home/runner/bin/vessel
           vessel install
-      - name: "test"
-        run: dfx start --background && npm test && dfx stop
+      - name: "install dfx"
+        run: sh -ci "$(curl -fsSL https://internetcomputer.org/install.sh)"
+      - name: "run tests"
+        run: npm test
