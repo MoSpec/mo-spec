@@ -1,8 +1,6 @@
-// @testmode interpreter
-
 import Debug "mo:base/Debug";
 import CanisterActor "Canister";
-import MoSpec "MoSpec";
+import MoSpec "../src/MoSpec";
 
 let deployedCanister = await CanisterActor.Canister();
 

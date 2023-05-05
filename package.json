@@ -11,8 +11,8 @@
     "prettier:check": "npx prettier --check .",
     "prettier:format": "npx prettier --write .",
     "test": "npm run test:src && npm run test:example",
-    "test:src": "mo-test -C src --testmode wasi --verbose",
-    "test:example": "mo-test -C example --testmode wasi --verbose"
+    "test:src": "mo-test -C test --testmode interpreter --verbose",
+    "test:example": "mo-test -C example --testmode interpreter --verbose"
   },
   "repository": {
     "type": "git",
@@ -31,8 +31,8 @@
   "homepage": "https://github.com/MoSpec/mo-spec#readme",
   "devDependencies": {
     "husky": "^8.0.2",
-    "mo-dev": "^0.5.4",
+    "mo-dev": "^0.7.1",
     "prettier": "^2.8.1",
-    "prettier-plugin-motoko": "^0.2.3"
+    "prettier-plugin-motoko": "^0.5.2"
   }
 }

@@ -1,6 +1,6 @@
-import M "Module";
+import U "Utils";
 import Debug "mo:base/Debug";
-import MoSpec "MoSpec";
+import MoSpec "../../../src/MoSpec";
 
 let assertTrue = MoSpec.assertTrue;
 let describe = MoSpec.describe;
@@ -16,15 +16,15 @@ var iterator = 0;
 
 let success = run([
   describe(
-    "Example Test Suite",
+    "#sum",
     [
       before(
         do {
           iterator += 1;
-        },
+        }
       ),
       context(
-        "When something happens",
+        "when something happens",
         [
           it(
             "should assess a boolean value",
@@ -35,13 +35,13 @@ let success = run([
           it(
             "should sum two positive Nats",
             do {
-              assertTrue(M.sum((1, 2)) == 3);
+              assertTrue(U.sum((1, 2)) == 3);
             },
           ),
           it(
-            "should fail a check that doesn't match",
+            "should check that doesn't match",
             do {
-              assertTrue(M.sum((1, 2)) != 4);
+              assertTrue(U.sum((1, 2)) != 4);
             },
           ),
           it(
